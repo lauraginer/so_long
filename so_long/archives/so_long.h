@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:26:47 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/09/30 19:27:37 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:42:19 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,14 @@ typedef struct s_game
 	int coins;
 	int	total_coins;
 	int player;
+	int	exit;
 	int wall;
 	int	x;
 	int y;
 	char **map;
 } t_game
 
-
-
-
-
-
-
-
-
-
-
-
-
+int	ft_check_line_map(int fd);
+int	ft_check_extension_map(char *str);
 
 #endif

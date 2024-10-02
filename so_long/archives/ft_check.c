@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_game.c                                    :+:      :+:    :+:   */
+/*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:08:07 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/02 00:01:18 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/02 21:52:00 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ int	ft_check_line_map(int fd)
 		i = 0;
 		while(line[i])
 		{
-			if(line[i] != '1' && line[i] != '0' && line[i] != '\n' &&
-			   line[i] != 'P' || line[i] != 'C' || line[i] != 'E')
+			if(line[i] != '1' && line[i] != '0' 
+			&& line[i] != '\n' && line[i] != 'P' 
+			&& line[i] != 'C' && line[i] != 'E')
 			{
 				free(line); //se asigna memoria por haber utilizado la funcion gnl
 				return (0); //NULL
@@ -47,13 +48,49 @@ int	ft_check_extension_map(char *str)
 	else
 		return(0);
 }
+int	ft_check_char_map(int fd, t_game *game)
+{
+	char	*map;
+	int		i;
+	
+	if(ft_check_line_map(fd) < 1)
+		return (0); // NULL
+	while((map = get_next_line(fd)) != NULL)
+	{
+		i = 0;
+		while(map[i])
+		{
+			if(map[i] == E)
+			{
+				i++;
+				if(E == E)
+					return (0);
+				return (1);
+			}				
+		}
+	
 
-/*int main()
+if(game->player == 1 && game->exit == 1 && game->total_coins != 1)
+	return (1);
+
+
+	
+	}
+}
+int main()
 {
     char *filename = "map_0.ber";
     int fd;
 
-    if (ft_check_extension_map(filename))
+	//contar numero de lineas
+	
+	//crear char **map= malloc((char *)*(numlineas+1));
+	
+	//leer de nuevo el fichero y rellenar map
+	
+	// mostrar el mapa
+	
+    /*if (ft_check_extension_map(filename))
     {
         fd = open(filename, O_RDONLY);
         if (fd < 0)
@@ -76,7 +113,7 @@ int	ft_check_extension_map(char *str)
     else
     {
         printf("La extensión del archivo %s no es válida.\n", filename);
-    }
+    }*/
 
     return (0);
-}*/
+}
