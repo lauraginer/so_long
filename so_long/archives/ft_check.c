@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:08:07 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/02 21:52:00 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:43:15 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	ft_check_extension_map(char *str)
 	else
 		return(0);
 }
+
 int	ft_check_char_map(int fd, t_game *game)
 {
 	char	*map;
@@ -77,19 +78,12 @@ if(game->player == 1 && game->exit == 1 && game->total_coins != 1)
 	
 	}
 }
-int main()
+
+/*int main()
 {
     char *filename = "map_0.ber";
     int fd;
 
-	//contar numero de lineas
-	
-	//crear char **map= malloc((char *)*(numlineas+1));
-	
-	//leer de nuevo el fichero y rellenar map
-	
-	// mostrar el mapa
-	
     /*if (ft_check_extension_map(filename))
     {
         fd = open(filename, O_RDONLY);
