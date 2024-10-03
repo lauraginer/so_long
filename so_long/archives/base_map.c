@@ -6,13 +6,13 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:46:53 by lauragm           #+#    #+#             */
-/*   Updated: 2024/10/03 14:17:12 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/03 14:19:45 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 		
-int	ft_count_lines(char *file) //contar numero de lineas
+int	count_lines(char *file) //contar numero de lineas
 {
 	int		fd;
 	int		count;

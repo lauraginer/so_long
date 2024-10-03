@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:11:32 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/03 14:18:30 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/03 14:19:51 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	
 	if (argc == 2)
 	{
-		game->num_lines = ft_count_lines(argv[1]);
+		game->num_lines = count_lines(argv[1]);
 		if(game->num_lines < 0)
 		{
 			perror("Error: Failed to count lines in the file");
