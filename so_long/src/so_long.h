@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:26:47 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/03 14:20:08 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/04 18:41:19 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_game
 	int y;
 	char **map;
 	int	num_lines;
-} t_game
+} t_game;
 
 int		ft_check_line_map(int fd);
 int		ft_check_extension_map(char *str);
