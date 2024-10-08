@@ -6,39 +6,13 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:08:07 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/03 12:43:15 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/08 17:30:58 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_check_line_map(int fd)
-{
-	char	*line;
-	int		i;
-
-	if(fd < 0)
-		return (0); //NULL
-	while((line = get_next_line(fd)) != NULL)
-	{
-		i = 0;
-		while(line[i])
-		{
-			if(line[i] != '1' && line[i] != '0' 
-			&& line[i] != '\n' && line[i] != 'P' 
-			&& line[i] != 'C' && line[i] != 'E')
-			{
-				free(line); //se asigna memoria por haber utilizado la funcion gnl
-				return (0); //NULL
-			}		
-			i++;
-		}
-		free(line);
-	}
-	return (1);
-}
-
-int	ft_check_extension_map(char *str)
+int	check_extension_map(char *str)
 {
 	int	len;
 
@@ -46,37 +20,94 @@ int	ft_check_extension_map(char *str)
 	if(len > 4 && ft_strncmp(&str[len - 4], ".ber", 4) == 0)
 		return(1);
 	else
-		return(0);
+	{
+		perror("Error: Extension map isn't valid");
+		return(-1);
+	}
 }
 
-int	ft_check_char_map(int fd, t_game *game)
-{
-	char	*map;
-	int		i;
+int	check_valid_char(t_game *game)
+{	
+	int	y;
+	int	x;
 	
-	if(ft_check_line_map(fd) < 1)
-		return (0); // NULL
-	while((map = get_next_line(fd)) != NULL)
+	y = 0;
+	if(game->player != 1 && game->exit != 1 && game->total_coins < 1)
 	{
-		i = 0;
-		while(map[i])
-		{
-			if(map[i] == E)
-			{
-				i++;
-				if(E == E)
-					return (0);
-				return (1);
-			}				
-		}
-	
-
-if(game->player == 1 && game->exit == 1 && game->total_coins != 1)
-	return (1);
-
-
-	
+		perror("Error: Total items haven't been found");
+		return(-1);
 	}
+	while(y < game->height)
+	{
+		x = 0;
+		while(x < game->width)
+		{
+			if(game->map[y][x] != '1' && game->map[y][x] != '0' 
+			&& game->map[y][x] != '\n' && game->map[y][x] != 'P' 
+			&& game->map[y][x] != 'C' && game->map[y][x] != 'E')
+			{
+				perror("Error: Characters are wrong");
+				return (-1);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
+int	check_format(t_game *game)
+{
+	int y;
+	int width;
+
+	if(game->height == 0)
+		return(-1);
+	width = ft_strlen(game->map[0]); //longitud de la primera fila
+	if(width == game->height) //comprobar si es cuadrado
+	{
+		perror("Error: Map isn't rectangular");
+		return(-1);
+	}
+	y = 1; 
+	while (y < game->height)
+	{
+		if(width != ft_strlen(game->map[y]))
+		{
+			perror("Error: Map isn't rectangular");
+			return(-1);
+		}
+		y++;
+	}
+	return (1);
+}
+
+int	check_walls(t_game *game)
+{
+	int y;
+	int x;
+
+	y = 0;
+	x = 0;
+	while (y < game->height) //comprobar el ancho horizontal (primer y último carácter de cada fila)
+	{
+		if(game->map[y][0] != '1' || game->[y][game->width - 1] != '1')
+		{
+			perror("Error:The map isn't surroended by walls");
+			return (-1);
+		}
+		y++;
+	}
+	while(x < game->width)
+	{
+		if(game->map[0][x] != '1' || game->[y][game->height - 1][x] != '1') //comprobar el alto vertical (primer y último carácter de cada columna)
+		{
+			perror("Error:The map isn't surroended by walls");
+			return (-1);			
+		}
+		x++;
+	}
+	return(1);
 }
 
 /*int main()
