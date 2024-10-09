@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:46:53 by lauragm           #+#    #+#             */
-/*   Updated: 2024/10/04 18:29:08 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:41:14 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	print_map(t_game *map_struct) // mostrar el mapa
 	while(i < map_struct->num_lines)
 	{
 		if(map_struct->map[i] != NULL)
-			printf("%s", map_struct->map[i]);
+			printf("%s", map_struct->map[i]); //ojete, tienes que poner TU printf
 		i++;
 	}
 }

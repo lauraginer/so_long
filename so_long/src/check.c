@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check.c                                         :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:08:07 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/08 17:30:58 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/09 19:24:44 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ int	check_valid_char(t_game *game)
 	int	x;
 	
 	y = 0;
-	if(game->player != 1 && game->exit != 1 && game->total_coins < 1)
-	{
-		perror("Error: Total items haven't been found");
-		return(-1);
-	}
+	
 	while(y < game->height)
 	{
 		x = 0;
@@ -72,7 +68,7 @@ int	check_format(t_game *game)
 	y = 1; 
 	while (y < game->height)
 	{
-		if(width != ft_strlen(game->map[y]))
+		if(width != ft_strlen_so_long(game->map[y]))
 		{
 			perror("Error: Map isn't rectangular");
 			return(-1);
@@ -91,7 +87,7 @@ int	check_walls(t_game *game)
 	x = 0;
 	while (y < game->height) //comprobar el ancho horizontal (primer y último carácter de cada fila)
 	{
-		if(game->map[y][0] != '1' || game->[y][game->width - 1] != '1')
+		if(game->map[y][0] != '1' || game->map[y][game->width - 1] != '1')
 		{
 			perror("Error:The map isn't surroended by walls");
 			return (-1);
@@ -100,7 +96,7 @@ int	check_walls(t_game *game)
 	}
 	while(x < game->width)
 	{
-		if(game->map[0][x] != '1' || game->[y][game->height - 1][x] != '1') //comprobar el alto vertical (primer y último carácter de cada columna)
+		if(game->map[0][x] != '1' || game->map[game->height - 1][x] != '1') //comprobar el alto vertical (primer y último carácter de cada columna)
 		{
 			perror("Error:The map isn't surroended by walls");
 			return (-1);			
@@ -110,12 +106,22 @@ int	check_walls(t_game *game)
 	return(1);
 }
 
+int	check_items(t_game *game)
+{
+	if(game->player != 1 && game->exit != 1 && game->total_coins < 1)
+	{
+		perror("Error: Total items haven't been found");
+		return(-1);
+	}
+	return(0);
+}
+
 /*int main()
 {
     char *filename = "map_0.ber";
     int fd;
 
-    /*if (ft_check_extension_map(filename))
+    if (ft_check_extension_map(filename))
     {
         fd = open(filename, O_RDONLY);
         if (fd < 0)
@@ -138,7 +144,7 @@ int	check_walls(t_game *game)
     else
     {
         printf("La extensión del archivo %s no es válida.\n", filename);
-    }*/
+    }
 
     return (0);
-}
+}*/

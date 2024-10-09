@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:26:47 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/04 18:41:19 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:18:56 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ typedef struct s_game
 	int	num_lines;
 } t_game;
 
-int		ft_check_line_map(int fd);
-int		ft_check_extension_map(char *str);
+int		check_extension_map(char *str);
+int		check_valid_char(t_game *game);
+int		check_format(t_game *game);
+int		check_walls(t_game *game);
+int		check_items(t_game *game);
 int		count_lines(char *file);
 int		memory_map(t_game *map_struct);
 int		fill_map(t_game *map_struct, char *file);
 void	print_map(t_game *map_struct);
-
+int		ft_strlen_so_long(char *str);
 #endif

@@ -6,15 +6,15 @@
 #    By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:27:08 by lginer-m          #+#    #+#              #
-#    Updated: 2024/10/04 19:26:17 by lginer-m         ###   ########.fr        #
+#    Updated: 2024/10/09 21:18:45 by lginer-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 CC = clang
-CFLAGS = -Wall -Werror -Wextra \
-		#-gcc -fsanitize=address,undefined \
+CFLAGS = -g -Wall -Werror -Wextra \
+		#-g -fsanitize=address,undefined \
 		#-Wunreachable-code -Ofast \
 
 
@@ -28,7 +28,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 HEADERS = -I$(LIBFT) -I$(MLX)
 
 SRCS = src/get_next_line_utils_bonus.c src/get_next_line_bonus.c \
-		src/main.c src/base_map.c
+		src/main.c src/base_map.c src/check.c src/utils.c
 
 OBJS = ${SRCS:.c=.o}
 
