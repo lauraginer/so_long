@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:08:07 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/09 19:24:44 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:15:42 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	check_valid_char(t_game *game)
 		while(x < game->width)
 		{
 			if(game->map[y][x] != '1' && game->map[y][x] != '0' 
-			&& game->map[y][x] != '\n' && game->map[y][x] != 'P' 
-			&& game->map[y][x] != 'C' && game->map[y][x] != 'E')
+			&& game->map[y][x] != 'E' && game->map[y][x] != 'P' 
+			&& game->map[y][x] != 'C' && game->map[y][x] != '\n')
 			{
 				perror("Error: Characters are wrong");
 				return (-1);
@@ -89,7 +89,7 @@ int	check_walls(t_game *game)
 	{
 		if(game->map[y][0] != '1' || game->map[y][game->width - 1] != '1')
 		{
-			perror("Error:The map isn't surroended by walls");
+			perror("Error:The map isn't surrounded by walls");
 			return (-1);
 		}
 		y++;
@@ -98,7 +98,7 @@ int	check_walls(t_game *game)
 	{
 		if(game->map[0][x] != '1' || game->map[game->height - 1][x] != '1') //comprobar el alto vertical (primer y último carácter de cada columna)
 		{
-			perror("Error:The map isn't surroended by walls");
+			perror("Error:The map isn't surrounded by walls");
 			return (-1);			
 		}
 		x++;

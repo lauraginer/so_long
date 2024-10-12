@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:26:47 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/09 19:18:56 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/12 19:18:36 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,30 @@
 
 typedef struct s_game
 {
-	int height;
-	int width;
-	int coins;
-	int	total_coins;
-	int player;
-	int	exit;
-	int wall;
-	int	x;
-	int y;
-	char **map;
-	int	num_lines;
+	int		height;
+	int		width;
+	int		coins;
+	int		total_coins;
+	int		player;
+	int		exit;
+	int		wall;
+	int		x;
+	int		y;
+	char	**map;
+	int		num_lines;
+	mlx_t	*mlx;
+	void	*win
+	mlx_image_t	*png_player;
+	mlx_image_t	*png_coin;
+	mlx_image_t	*png_exit;
+	mlx_image_t	*png_wall;
+	mlx_image_t	*png_floor;
+	mlx_texture_t	*txt_player;
+	mlx_texture_t	*txt_coin;
+	mlx_texture_t	*txt_exit;
+	mlx_texture_t	*txt_wall;
+	mlx_texture_t	*txt_floor;
+	
 } t_game;
 
 int		check_extension_map(char *str);
