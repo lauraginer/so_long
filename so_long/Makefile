@@ -6,7 +6,7 @@
 #    By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:27:08 by lginer-m          #+#    #+#              #
-#    Updated: 2024/10/09 21:18:45 by lginer-m         ###   ########.fr        #
+#    Updated: 2024/10/14 20:27:26 by lginer-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 HEADERS = -I$(LIBFT) -I$(MLX)
 
 SRCS = src/get_next_line_utils_bonus.c src/get_next_line_bonus.c \
-		src/main.c src/base_map.c src/check.c src/utils.c
+		src/main.c src/base_map.c src/check.c src/utils.c src/print_error.c \
+		src/base_moving.c
 
 OBJS = ${SRCS:.c=.o}
 

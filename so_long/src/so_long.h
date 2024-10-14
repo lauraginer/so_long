@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:26:47 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/12 19:18:36 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:55:29 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,14 @@ typedef struct s_game
 	int		height;
 	int		width;
 	int		coins;
-	int		total_coins;
 	int		player;
 	int		exit;
 	int		wall;
 	int		x;
 	int		y;
 	char	**map;
-	int		num_lines;
+	void	*win;
 	mlx_t	*mlx;
-	void	*win
 	mlx_image_t	*png_player;
 	mlx_image_t	*png_coin;
 	mlx_image_t	*png_exit;
@@ -60,5 +58,6 @@ int		count_lines(char *file);
 int		memory_map(t_game *map_struct);
 int		fill_map(t_game *map_struct, char *file);
 void	print_map(t_game *map_struct);
+void	print_error(char	*msg);
 int		ft_strlen_so_long(char *str);
 #endif

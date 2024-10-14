@@ -3,69 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:11:32 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/12 16:08:52 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:03:13 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	load_map(t_game *game, char **argv)
+static void	load_map(t_game *game, char **argv)
 {	
-	game->num_lines = count_lines(argv[1]);
-	if(game->num_lines < 0)
+	game->height = count_lines(argv[1]);
+	if(game->height < 0)
 	{
-		printf("Error: Failed to count lines in the file");
-		return;
+		print_error("Error: Failed to count lines in the file");
 	}
 	if(memory_map(game) < 0)
 	{
-		printf("Error: Failed to allocate memory for the map");
-		return;
+		print_error("Error: Failed to allocate memory for the map");
 	}
 	if(fill_map(game, argv[1]) < 0) //Rellenar el mapa con el contenido del archivo
 	{
-		printf("Error: Failed to fill the map");
-		return;
+		print_error("Error: Failed to fill the map");
 	}
 	if(check_extension_map(argv[1]) < 0)
 	{	
-		printf("Error: Extension map isn't valid");
-		return;
+		print_error("Error: Extension map isn't valid");
 	}
 	if(check_valid_char(game) < 0)
 	{
-		printf("Error: Characters aren't valid");
-		return;
+		print_error("Error: Characters aren't valid");
 	}	
-	if(check_format(game) < 0)
-	{
-		printf("Error: Invalid map format");
-		return;
-	}
-	if(check_walls(game) < 0)
-	{
-		printf("Error: Map isn't surroended by walls");
-		return;
-	}
-	if(check_items(game) < 0)
-	{
-		printf("Error: Items haven't been found");
-		return;
-	}
-	print_map(game);
 }
 
-void	unllocate_map(t_game *game)
+static void	unllocate_map(t_game *game)
 {
 	int	i;
 	
 	if(game->map)
 	{
 		i = 0;
-		while(i < game->num_lines) //Liberar la memoria asignada
+		while(i < game->height) //Liberar la memoria asignada
 		{
 			free(game->map[i]);
 			i++;
@@ -73,19 +52,45 @@ void	unllocate_map(t_game *game)
 		free(game->map);
 	}
 	else
-	{
-		printf("Error: Failed allocate map");
-		return;
-	}
+		print_error("Error: Failed allocate map");
+
 }
 
-int main(int argc, char **argv)
+static void init_game(t_game *game)
+{
+	game->height = 0;
+	game->width = 0;
+	game->coins = 0;
+	game->player = 0;
+	game->exit = 0;
+	game->wall = 0;
+	game->x = 0;
+	game->y = 0;
+	game->map = NULL;
+	game->win = NULL;
+}
+
+int main(int argc, char **argv) //Recuerda liberar memoria cada vez que utilices cada funcion para evitar los leaks
 {
 	t_game	game;
 	
 	if (argc == 2)
-	{	
+	{
+		init_game(&game);
 		load_map(&game, argv);
+		if(check_format(&game) < 0)
+		{
+			print_error("Error: Invalid map format");
+		}
+		if(check_walls(&game) < 0)
+		{
+			print_error("Error: Map isn't surroended by walls");
+		}
+		if(check_items(&game) < 0)
+		{
+			print_error("Error: Items haven't been found");
+		}
+		print_map(&game);
 		unllocate_map(&game);
 	}	
 	else

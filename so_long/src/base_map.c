@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:46:53 by lauragm           #+#    #+#             */
-/*   Updated: 2024/10/09 20:41:14 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:43:19 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ int	memory_map(t_game *map_struct) //crear char **map= malloc((char *)*(numlinea
 {
 	int	i;
 	
-	if(map_struct == NULL || map_struct->num_lines <= 0)
+	if(map_struct == NULL || map_struct->height <= 0)
 	{
 		perror("Error: Invalid map structure");
 		return(-1);
 	}
-	map_struct->map = malloc((map_struct->num_lines + 1) * sizeof(char *));
+	map_struct->map = malloc((map_struct->height + 1) * sizeof(char *));
 	if(!map_struct->map)
 	{
 		perror("Error: Failed allocating memory");
 		return (-1);
 	}
 	i = 0;
-	while(i <= map_struct->num_lines) //Inicializa cada puntero a NULL dentro del array de líneas del mapa
+	while(i <= map_struct->height) //Inicializa cada puntero a NULL dentro del array de líneas del mapa
 	{
 		map_struct->map[i] = NULL; //Asigna NULL a cada entrada para inicializarla
 		i++;
@@ -92,7 +92,7 @@ void	print_map(t_game *map_struct) // mostrar el mapa
 		perror("Error: Map structure or map failed");
 		return;
 	}
-	while(i < map_struct->num_lines)
+	while(i < map_struct->height)
 	{
 		if(map_struct->map[i] != NULL)
 			printf("%s", map_struct->map[i]); //ojete, tienes que poner TU printf

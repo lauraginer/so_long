@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:08:07 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/12 16:15:42 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/14 17:44:18 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,14 @@ int	check_valid_char(t_game *game)
 int	check_format(t_game *game)
 {
 	int y;
-	int width;
 
 	if(game->height == 0)
 		return(-1);
-	width = ft_strlen(game->map[0]); //longitud de la primera fila
-	if(width == game->height) //comprobar si es cuadrado
-	{
-		perror("Error: Map isn't rectangular");
-		return(-1);
-	}
+	game->width = ft_strlen_so_long(game->map[0]); //longitud de la primera fila
 	y = 1; 
 	while (y < game->height)
 	{
-		if(width != ft_strlen_so_long(game->map[y]))
+		if(game->width != ft_strlen_so_long(game->map[y]))
 		{
 			perror("Error: Map isn't rectangular");
 			return(-1);
@@ -108,7 +102,26 @@ int	check_walls(t_game *game)
 
 int	check_items(t_game *game)
 {
-	if(game->player != 1 && game->exit != 1 && game->total_coins < 1)
+	int i;
+	int j;
+	
+	i = 0;
+	while(game->map[i])
+	{
+		j = 0;
+		while(game->map[i][j])
+		{
+			if (game->map[i][j] == 'P')
+				game->player++;
+			if (game->map[i][j] == 'E')
+				game->exit++;
+			if (game->map[i][j] == 'C')
+				game->coins++;
+			j++;
+		}
+		i++;
+	}
+	if(game->player != 1 || game->exit != 1 || game->coins < 1)
 	{
 		perror("Error: Total items haven't been found");
 		return(-1);
