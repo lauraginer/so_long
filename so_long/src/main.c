@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:11:32 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/14 19:03:13 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:57:32 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void init_game(t_game *game)
 	game->x = 0;
 	game->y = 0;
 	game->map = NULL;
+	game->duplicate = NULL;
 	game->win = NULL;
 }
 
@@ -79,19 +80,18 @@ int main(int argc, char **argv) //Recuerda liberar memoria cada vez que utilices
 		init_game(&game);
 		load_map(&game, argv);
 		if(check_format(&game) < 0)
-		{
 			print_error("Error: Invalid map format");
-		}
 		if(check_walls(&game) < 0)
-		{
 			print_error("Error: Map isn't surroended by walls");
-		}
 		if(check_items(&game) < 0)
-		{
 			print_error("Error: Items haven't been found");
-		}
+		if (flood_fill(&game) < 0)
+			print_error("Error: Isolated item");
 		print_map(&game);
+		start_mlx(&game);
+		mlx_loop(game.mlx);
 		unllocate_map(&game);
+		
 	}	
 	else
 		printf("Error: Invalid arguments");

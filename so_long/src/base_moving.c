@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:43:57 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/14 22:17:03 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:25:19 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ int	transitable_box( t_game *game, int y, int x) //verifica si se puede mover un
 	}
 }
 
-void	keymove_w(t_game *game, mlx_key_data_t keydata, void *param)
+void	keymove_w(mlx_key_data_t keydata, void *param)
 {
+	t_game *game;
 	int y;
 	int	x;
 
-	game->game = param;
+	game = (t_game *)param;
 	y = game->y;
 	x = game->x;
 	

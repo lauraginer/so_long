@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 16:17:58 by lauragm           #+#    #+#             */
-/*   Updated: 2024/10/14 20:21:56 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:33:30 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,24 @@
 
 void	start_mlx(t_game *game)
 {
-	game->width = 800;
-	game->height = 600;
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	game->mlx = mlx_init(game->width * PIXEL_SIZE, 
+				game->height * PIXEL_SIZE, "so_long", true);
+	if(!game->mlx)
+		print_error("Error: Failed to initialize MLX");
+	create_textures(game);
+	create_images(game);
+	load_images(game);
 
-	game->mlx = mlx_init()
-	if(!mlx)
-	{
-		perror("Error: Failed to initialize MLX");
-		return(-1);
-	}
-	game->win = mlx_new_window(mlx, width, height, "Ventana MLX Básica");
-	if(!win)
-	{
-		perror("Error: Failed to reate window");
-		return(-1);		
-	}
-	mlx_loop(mlx);
+	mlx_loop(game->mlx);
 }
 
 void	create_textures(t_game *game)
 {
-	game->txt_player = mlx_load_png("./images/player.png");
+	game->txt_player = mlx_load_png("./images/player(2).png");
 	if(!game->txt_player)
 		print_error("Error: Failed to create the texture of player");
-	game->txt_coin= mlx_load_png("./images/coin.png");
+	game->txt_coin= mlx_load_png("./images/coin(2).png");
 	if(!game->txt_coin)
 		print_error("Error: Failed to create the texture of coin");
 	game->txt_wall = mlx_load_png("./images/wall.png");
@@ -46,7 +40,7 @@ void	create_textures(t_game *game)
 	game->txt_floor = mlx_load_png("./images/floor.png");
 	if(!game->txt_floor)
 		print_error("Error: Failed to create the texture of floor");
-	game->txt_exit = mlx_load_png("./images/exit.png");
+	game->txt_exit = mlx_load_png("./images/exit(2).png");
 	if(!game->txt_exit)
 		print_error("Error: Failed to create the texture of exit");
 }

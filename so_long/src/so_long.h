@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:26:47 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/14 19:55:29 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:58:07 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_game
 	int		x;
 	int		y;
 	char	**map;
+	char	**duplicate;
 	void	*win;
 	mlx_t	*mlx;
 	mlx_image_t	*png_player;
@@ -59,5 +60,9 @@ int		memory_map(t_game *map_struct);
 int		fill_map(t_game *map_struct, char *file);
 void	print_map(t_game *map_struct);
 void	print_error(char	*msg);
+void	start_mlx(t_game *game);
+void	create_textures(t_game *game);
+void	create_images(t_game *game);
+void	load_images(t_game *game);
 int		ft_strlen_so_long(char *str);
 #endif
