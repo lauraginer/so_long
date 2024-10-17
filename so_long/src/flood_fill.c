@@ -6,48 +6,47 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:50:35 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/16 21:22:18 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:31:17 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int flood_fill(t_game *game)
+void	flood_fill(char **copy, int y, int x)
 {
-	char **copy_map;
-
-	copy_map = ft_copy_map(game->map);
-	found_player(t_game *game);
-	check_ec(t_game	*game);
-	
-	
-	
-	
-	
+	if(copy[y][x] != '1')
+	{
+		copy[y][x] = '1';
+		flood_fill(copy, y - 1, x);
+		flood_fill(copy, y + 1, x);
+		flood_fill(copy, y, x + 1);
+		flood_fill(copy, y, x - 1);
+	}
 }
 
 char	**ft_copy_map(t_game *game) //copiar el mapa en un char **
 {
 	int 	y;
+	char **copy;
 	
-	game->duplicate = (char **)malloc(sizeof(char*) * (game->height + 1));
-	if(!game->duplicate)
+	copy = (char **)malloc(sizeof(char*) * (game->height + 1));
+	if(!copy)
 		return (NULL);
 	y = 0;
 	while(y < game->height)
 	{
-		game->duplicate[y] = ft_strdup(game->map[y]); //copiar por cada fila
-		if(!game->duplicate[y])
+		copy[y] = ft_strdup(game->map[y]); //copiar por cada fila
+		if(!copy[y])
 		{
 			while(y > 0)
-				free(game->duplicate[--y]);
-			free(game->duplicate);
+				free(copy[--y]);
+			free(copy);
 			return(NULL);
 		}
 		y++;
 	}
-	game->duplicate[y] = NULL;//para indicar en caso de error
-	return(game->duplicate);	
+	copy[y] = NULL;//para indicar en caso de error
+	return(copy);	
 }
 
 void	found_player(t_game *game) //desde donde esta la P empezar flood fill
@@ -63,8 +62,8 @@ void	found_player(t_game *game) //desde donde esta la P empezar flood fill
 		{
 			if(game->map[y][x] == 'P')
 			{
-				game->map[y] = y;
-				game->map[x] = x;
+				game->y = y;
+				game->x = x;
 				return;
 			}
 			x++;
@@ -75,40 +74,50 @@ void	found_player(t_game *game) //desde donde esta la P empezar flood fill
 	game->x = -1;//para indicar en caso de error
 }
 
-int	check_ec(t_game *game)//comprobar que no tienes ni E ni C
+int	check_ec(char ** map)//comprobar que no tienes ni E ni C
 {
 	int y;
 	int x;
+	int numC;
+	int numE;
 
+	numC = 0;
+	numE = 0;
 	y = 0;
-	while(game->map[y])
+	while(map[y])
 	{
 		x = 0;
-		while(game->map[y][x])
+		while(map[y][x])
 		{
-			if(game->map[y][x] == 'E' || game->map[y][x] == 'C' || game->map[y][x] == 'P') 
-				print_error("Error: Invalid path");
+			if(map[y][x] == 'E')
+				numE++;
+			if(map[y][x] == 'C')
+				numC++;
 			x++;
 		}
 		y++;
 	}
+	if(numC != 0 || numE!=0)
+	{
+		printf("Error: Isolated item");
+		return(-1); //en caso de error
+	}
 	return(0);
 }
 
-void	free_map(t_game *game)//liberar el mpap en cualquier caso
+void	free_copy(t_game *game, char **map)//liberar el mpap en cualquier caso
 {
 	int	i;
 	
 	i = 0;
-	if(game->duplicate)
+	if(map)
 	{
 		while(i < game->height)
 		{
-			if(game->duplicate[i])
-				free(game->duplicate[i]);
+			if(map[i])
+				free(map[i]);
 			i++;
 		}
-		free(game->duplicate);
+		free(map);
 	}
-	return(0);
 }

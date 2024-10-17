@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:46:53 by lauragm           #+#    #+#             */
-/*   Updated: 2024/10/14 17:43:19 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:26:39 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,20 +82,21 @@ int	fill_map(t_game *map_struct, char *file) //leer de nuevo el fichero y rellen
 	return (0);
 }
 
-void	print_map(t_game *map_struct) // mostrar el mapa
+void	print_map(t_game *map_struct ,char **map) // mostrar el mapa
 {
 	int	i;
 	
 	i = 0;
-	if(map_struct == NULL || map_struct->map == NULL)
+	if(map_struct == NULL || map == NULL)
 	{
 		perror("Error: Map structure or map failed");
 		return;
 	}
 	while(i < map_struct->height)
 	{
-		if(map_struct->map[i] != NULL)
-			printf("%s", map_struct->map[i]); //ojete, tienes que poner TU printf
+		if(map[i] != NULL)
+			printf("%s", map[i]); //ojete, tienes que poner TU printf
 		i++;
 	}
+	printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:26:47 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/15 20:58:07 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:23:12 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_game
 	int		x;
 	int		y;
 	char	**map;
-	char	**duplicate;
 	void	*win;
 	mlx_t	*mlx;
 	mlx_image_t	*png_player;
@@ -58,11 +57,16 @@ int		check_items(t_game *game);
 int		count_lines(char *file);
 int		memory_map(t_game *map_struct);
 int		fill_map(t_game *map_struct, char *file);
-void	print_map(t_game *map_struct);
+void	print_map(t_game *map_struct, char **map);
 void	print_error(char	*msg);
 void	start_mlx(t_game *game);
 void	create_textures(t_game *game);
 void	create_images(t_game *game);
 void	load_images(t_game *game);
 int		ft_strlen_so_long(char *str);
+void	flood_fill(char **copy, int y, int x);
+char	**ft_copy_map(t_game *game);
+void	found_player(t_game *game);
+int		check_ec(char **map);
+void	free_copy(t_game *game, char **map);
 #endif

@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:43:57 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/15 19:25:19 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/17 21:44:03 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,18 @@ int	transitable_box( t_game *game, int y, int x) //verifica si se puede mover un
 		game->x = x;
 		return(1);
 	}
-	else
-	{
-		perror("Error: Non transitable box");
-		return(-1);
-	}
+	return (0);
 }
 
-void	keymove_w(mlx_key_data_t keydata, void *param)
+void	keymove_w(t_mlx_key_data_t *data, t_game *game, void *param)
 {
-	t_game *game;
-	int y;
+	int	y;
 	int	x;
 
 	game = (t_game *)param;
 	y = game->y;
 	x = game->x;
-	
+	if(
 	
 }
+
