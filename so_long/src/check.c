@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:08:07 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/15 19:50:27 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:23:16 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,12 @@ int	check_items(t_game *game)
 			if (game->map[i][j] == 'E')
 				game->exit++;
 			if (game->map[i][j] == 'C')
-				game->coins++;
+				game->coin++;
 			j++;
 		}
 		i++;
 	}
-	if(game->player != 1 || game->exit != 1 || game->coins < 1)
+	if(game->player != 1 || game->exit != 1 || game->coin < 1)
 	{
 		perror("Error: Total items haven't been found");
 		return(-1);

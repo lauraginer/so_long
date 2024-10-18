@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:11:32 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/17 20:25:02 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:24:59 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,37 @@ static int check_isolated(t_game *game)
 		print_error("Error: Player not found");
 	}
 	flood_fill(copy, game->y,game->x);
-	if(check_ec(copy) == -1)
+	if(check_ec(game, copy) == -1)
 	{
 		free_copy(game,copy);
 		return(-1);
 	}
-	print_map(game ,copy);
+	print_map(game,copy);
 	free_copy(game,copy);
 	return(0);
 	
+}
+
+static void	keymoves(void *param)
+{
+	t_game *game = (t_game *)param;
+	if(mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+	{
+		mlx_close_window(game->mlx);
+		return;
+	}
+	if (keymove_w(game) == -1 || keymove_a(game) == -1 || keymove_s(game) == -1 || keymove_d(game) == -1)
+		print_error("Error: An error occurred during key movement");
+	move_player(game);
+	return;
 }
 
 static void init_game(t_game *game)
 {
 	game->height = 0;
 	game->width = 0;
-	game->coins = 0;
+	game->coin = 0;
+	game->total_coins = 0;
 	game->player = 0;
 	game->exit = 0;
 	game->wall = 0;
@@ -90,6 +105,7 @@ static void init_game(t_game *game)
 	game->y = 0;
 	game->map = NULL;
 	game->win = NULL;
+	game->count = 0;
 }
 
 int main(int argc, char **argv) //Recuerda liberar memoria cada vez que utilices cada funcion para evitar los leaks
@@ -110,6 +126,7 @@ int main(int argc, char **argv) //Recuerda liberar memoria cada vez que utilices
 			print_error("Error: Isolated item");
 		print_map(&game, game.map);
 		start_mlx(&game);
+		mlx_loop_hook(game.mlx, keymoves, &game);
 		mlx_loop(game.mlx);
 		unllocate_map(&game);
 		

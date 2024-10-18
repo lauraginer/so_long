@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:26:47 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/17 20:23:12 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:21:00 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ typedef struct s_game
 {
 	int		height;
 	int		width;
-	int		coins;
+	int		coin;
+	int		total_coins;
 	int		player;
 	int		exit;
 	int		wall;
@@ -35,6 +36,7 @@ typedef struct s_game
 	int		y;
 	char	**map;
 	void	*win;
+	int		count;
 	mlx_t	*mlx;
 	mlx_image_t	*png_player;
 	mlx_image_t	*png_coin;
@@ -67,6 +69,14 @@ int		ft_strlen_so_long(char *str);
 void	flood_fill(char **copy, int y, int x);
 char	**ft_copy_map(t_game *game);
 void	found_player(t_game *game);
-int		check_ec(char **map);
+int		check_ec(t_game *game, char **map);
 void	free_copy(t_game *game, char **map);
+int		transitable_box( t_game *game, int y, int x);
+int		keymove_w(t_game *game);
+int		keymove_a(t_game *game);
+int		keymove_s(t_game *game);
+int		keymove_d(t_game *game);
+void	move_player(t_game *game);
+void	win_txt(t_game *game);
+
 #endif

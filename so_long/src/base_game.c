@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   base_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 16:17:58 by lauragm           #+#    #+#             */
-/*   Updated: 2024/10/15 19:33:30 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:58:27 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	start_mlx(t_game *game)
 	create_textures(game);
 	create_images(game);
 	load_images(game);
-
 	mlx_loop(game->mlx);
 }
 

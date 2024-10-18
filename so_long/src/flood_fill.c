@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:50:35 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/17 20:31:17 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:19:04 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	found_player(t_game *game) //desde donde esta la P empezar flood fill
 	game->x = -1;//para indicar en caso de error
 }
 
-int	check_ec(char ** map)//comprobar que no tienes ni E ni C
+int	check_ec(t_game *game, char ** map)//comprobar que no tienes ni E ni C
 {
 	int y;
 	int x;
@@ -97,7 +97,8 @@ int	check_ec(char ** map)//comprobar que no tienes ni E ni C
 		}
 		y++;
 	}
-	if(numC != 0 || numE!=0)
+	game->total_coins = numC;
+	if(game->total_coins != 0 || numE!=0)
 	{
 		printf("Error: Isolated item");
 		return(-1); //en caso de error

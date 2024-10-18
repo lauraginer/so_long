@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:16:22 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/09 19:18:31 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:40:43 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,11 @@ int	ft_strlen_so_long(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	return (i);
+}
+
+void	win_txt(t_game *game)
+{
+	printf("Congratulations, you win!!\n");
+	mlx_terminate(game->mlx);
+	exit(0);
 }

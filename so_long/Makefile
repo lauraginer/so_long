@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+         #
+#    By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:27:08 by lginer-m          #+#    #+#              #
-#    Updated: 2024/10/17 20:03:55 by lginer-m         ###   ########.fr        #
+#    Updated: 2024/10/18 14:02:22 by lauragm          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ HEADERS = -I$(LIBFT) -I$(MLX)
 
 SRCS = src/get_next_line_utils_bonus.c src/get_next_line_bonus.c \
 		src/main.c src/base_map.c src/check.c src/utils.c src/print_error.c \
-		src/base_game.c src/flood_fill.c
+		src/base_game.c src/flood_fill.c src/base_moving.c src/move_player.c \
 
 OBJS = ${SRCS:.c=.o}
 
