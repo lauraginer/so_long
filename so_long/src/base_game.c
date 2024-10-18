@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 16:17:58 by lauragm           #+#    #+#             */
-/*   Updated: 2024/10/18 13:58:27 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/18 19:38:43 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	start_mlx(t_game *game)
 	create_textures(game);
 	create_images(game);
 	load_images(game);
+	mlx_key_hook(game->mlx, &keymoves, game);
 	mlx_loop(game->mlx);
 }
 
@@ -83,7 +84,10 @@ void	load_images(t_game *game) //la funcion de la mlx dibuja una imagen
 			else if(game->map[y][x] == 'E')
 				mlx_image_to_window(game->mlx, game->png_exit, x * PIXEL_SIZE, y * PIXEL_SIZE);
 			else if(game->map[y][x] == 'P')
+			{
+				mlx_image_to_window(game->mlx, game->png_floor, x * PIXEL_SIZE, y * PIXEL_SIZE);
 				mlx_image_to_window(game->mlx, game->png_player, x * PIXEL_SIZE, y * PIXEL_SIZE);
+			}
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:26:47 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/18 14:21:00 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/18 19:08:46 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int		keymove_s(t_game *game);
 int		keymove_d(t_game *game);
 void	move_player(t_game *game);
 void	win_txt(t_game *game);
+void	keymoves(struct mlx_key_data keydata, void *param);
 
 #endif

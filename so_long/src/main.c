@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:11:32 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/18 14:24:59 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/18 18:59:22 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,6 @@ static int check_isolated(t_game *game)
 	
 }
 
-static void	keymoves(void *param)
-{
-	t_game *game = (t_game *)param;
-	if(mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-	{
-		mlx_close_window(game->mlx);
-		return;
-	}
-	if (keymove_w(game) == -1 || keymove_a(game) == -1 || keymove_s(game) == -1 || keymove_d(game) == -1)
-		print_error("Error: An error occurred during key movement");
-	move_player(game);
-	return;
-}
-
 static void init_game(t_game *game)
 {
 	game->height = 0;
@@ -126,10 +112,7 @@ int main(int argc, char **argv) //Recuerda liberar memoria cada vez que utilices
 			print_error("Error: Isolated item");
 		print_map(&game, game.map);
 		start_mlx(&game);
-		mlx_loop_hook(game.mlx, keymoves, &game);
-		mlx_loop(game.mlx);
 		unllocate_map(&game);
-		
 	}	
 	else
 		printf("Error: Invalid arguments");
