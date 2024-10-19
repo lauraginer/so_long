@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:50:35 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/18 14:19:04 by lauragm          ###   ########.fr       */
+/*   Updated: 2024/10/19 18:59:26 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	**ft_copy_map(t_game *game) //copiar el mapa en un char **
 	if(!copy)
 		return (NULL);
 	y = 0;
+	printf("Valor de height: %d\n", game->height); //DEPURACION
 	while(y < game->height)
 	{
 		copy[y] = ft_strdup(game->map[y]); //copiar por cada fila
@@ -78,27 +79,26 @@ int	check_ec(t_game *game, char ** map)//comprobar que no tienes ni E ni C
 {
 	int y;
 	int x;
-	int numC;
 	int numE;
-
-	numC = 0;
+	
 	numE = 0;
 	y = 0;
-	while(map[y])
+	while(map[y] != NULL)
 	{
 		x = 0;
-		while(map[y][x])
+		while(map[y][x] != '\0')
 		{
+			printf("Checking map[%d][%d]: %c\n", y, x, map[y][x]);
 			if(map[y][x] == 'E')
 				numE++;
 			if(map[y][x] == 'C')
-				numC++;
+				game->total_coins++;
 			x++;
 		}
 		y++;
 	}
-	game->total_coins = numC;
-	if(game->total_coins != 0 || numE!=0)
+	printf("Total coins: %d, Exits: %d\n", game->total_coins, numE);
+	if(game->total_coins != 0 || numE != 0)
 	{
 		printf("Error: Isolated item");
 		return(-1); //en caso de error
