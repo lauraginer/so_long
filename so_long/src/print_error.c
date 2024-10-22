@@ -6,14 +6,15 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:02:57 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/14 19:04:16 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:47:59 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void print_error(char *msg)
+void	print_error(char *msg, t_game *game)
 {
-	ft_putstr_fd(msg,2);
+	ft_putstr_fd(msg, 2);
+	unllocate_map(game);
 	exit(1);
 }

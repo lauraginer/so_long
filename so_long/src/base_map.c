@@ -6,97 +6,80 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:46:53 by lauragm           #+#    #+#             */
-/*   Updated: 2024/10/17 20:26:39 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/22 21:05:23 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-		
-int	count_lines(char *file) //contar numero de lineas
+
+int	count_lines(char *file)
 {
 	int		fd;
 	int		count;
 	char	*line;
 
 	fd = open(file, O_RDONLY);
-	if(fd < 0)
+	if (fd < 0)
 	{
 		perror("Error: Failed opening the file");
-		return(-1);
+		return (-1);
 	}
-	
 	count = 0;
-	while((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line)
 	{
 		count++;
 		free(line);
+		line = get_next_line(fd);
 	}
-
 	close(fd);
 	return (count);
 }
 
-int	memory_map(t_game *map_struct) //crear char **map= malloc((char *)*(numlineas+1));
+int	memory_map(t_game *game)
 {
 	int	i;
-	
-	if(map_struct == NULL || map_struct->height <= 0)
+
+	if (game == NULL || game->height <= 0)
 	{
 		perror("Error: Invalid map structure");
-		return(-1);
+		return (-1);
 	}
-	map_struct->map = malloc((map_struct->height + 1) * sizeof(char *));
-	if(!map_struct->map)
+	game->map = malloc((game->height + 1) * sizeof(char *));
+	if (!game->map)
 	{
 		perror("Error: Failed allocating memory");
 		return (-1);
 	}
 	i = 0;
-	while(i <= map_struct->height) //Inicializa cada puntero a NULL dentro del array de líneas del mapa
+	while (i <= game->height)
 	{
-		map_struct->map[i] = NULL; //Asigna NULL a cada entrada para inicializarla
+		game->map[i] = NULL;
 		i++;
 	}
 	return (0);
 }
 
-int	fill_map(t_game *map_struct, char *file) //leer de nuevo el fichero y rellenar map
+int	fill_map(t_game *game, char *file)
 {
 	int		fd;
 	char	*line;
 	int		i;
 
 	fd = open(file, O_RDONLY);
-	if(fd < 0)
+	if (fd < 0)
 	{
 		perror("Error: Failed opening the file");
 		return (-1);
 	}
-	 i = 0;
-	 while((line = get_next_line(fd)) != NULL)
+	i = 0;
+	line = get_next_line(fd);
+	while (line)
 	{
-		map_struct->map[i] = line;
+		game->map[i] = line;
 		i++;
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (0);
-}
-
-void	print_map(t_game *map_struct ,char **map) // mostrar el mapa
-{
-	int	i;
-	
-	i = 0;
-	if(map_struct == NULL || map == NULL)
-	{
-		perror("Error: Map structure or map failed");
-		return;
-	}
-	while(i < map_struct->height)
-	{
-		if(map[i] != NULL)
-			printf("%s", map[i]); //ojete, tienes que poner TU printf
-		i++;
-	}
-	printf("\n");
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+         #
+#    By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 18:27:08 by lginer-m          #+#    #+#              #
-#    Updated: 2024/10/18 14:02:22 by lauragm          ###   ########.fr        #
+#    Updated: 2024/10/22 22:20:58 by lginer-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = so_long
 
 CC = clang
 CFLAGS = -g -Wall -Werror -Wextra \
-		#-g -fsanitize=address,undefined \
+		#-fsanitize=address,undefined \
 		#-Wunreachable-code -Ofast \
 
 
