@@ -1,0 +1,7 @@
+/home/lginer-m/Desktop/newsolong/so_long/MLX42/build-fPIE/CMakeFiles/mlx42.dir
+/home/lginer-m/Desktop/newsolong/so_long/MLX42/build-fPIE/CMakeFiles/edit_cache.dir
+/home/lginer-m/Desktop/newsolong/so_long/MLX42/build-fPIE/CMakeFiles/rebuild_cache.dir
+/home/lginer-m/Desktop/newsolong/so_long/MLX42/build-fPIE/CMakeFiles/list_install_components.dir
+/home/lginer-m/Desktop/newsolong/so_long/MLX42/build-fPIE/CMakeFiles/install.dir
+/home/lginer-m/Desktop/newsolong/so_long/MLX42/build-fPIE/CMakeFiles/install/local.dir
+/home/lginer-m/Desktop/newsolong/so_long/MLX42/build-fPIE/CMakeFiles/install/strip.dir

@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:11:32 by lginer-m          #+#    #+#             */
-/*   Updated: 2024/10/22 22:13:39 by lginer-m         ###   ########.fr       */
+/*   Updated: 2024/10/23 20:09:13 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,12 @@ static void	init_game(t_game *game)
 	game->y = 0;
 	game->map = NULL;
 	game->win = NULL;
+	game->count = 0;
+	game->txt_player = NULL;
+	game->txt_coin = NULL;
+	game->txt_exit = NULL;
+	game->txt_floor = NULL;
+	game->txt_wall = NULL;
 	game->count = 0;
 }
 
